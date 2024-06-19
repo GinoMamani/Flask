@@ -53,21 +53,29 @@ button {
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: #f9f9f9;
+    margin: 0 auto; /* Center the form on larger screens */
 }
 
 /* Media Query for Mobile Devices */
 @media (max-width: 600px) {
+    body {
+        padding: 0; /* Remove padding to use the full screen */
+    }
     .form-container {
-        padding: 10px;
+        max-width: 100%;
+        padding: 20px; /* Keep some padding for readability */
         border: none;
         box-shadow: none;
     }
+    h1 {
+        font-size: 24px; /* Increase heading size */
+    }
     input[type="text"], input[type="number"], select, input[type="url"] {
-        font-size: 14px;
-        padding: 10px;
+        font-size: 18px; /* Increase input font size */
+        padding: 14px; /* Increase padding */
     }
     button[type="submit"], button[type="button"] {
-        font-size: 14px;
-        padding: 10px;
+        font-size: 18px; /* Increase button font size */
+        padding: 14px; /* Increase padding */
     }
 }
