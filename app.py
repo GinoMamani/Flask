@@ -110,7 +110,7 @@ def delete(record_id):
 
 # Sending an email
 def send_email(record):
-    recipient = ['leonardo.daviran@overall.com.pe', 'mantenimientoelectronico@overall.com.pe', 'gino.mamani@overall.com.pe']
+    recipient = ['leonardo.daviran@overall.com.pe', 'mantenimientoelectronico@overall.com.pe']
     subject = f"SOLICITUD DE HERRAMIENTA - {record['cantidad']} {record['herramienta']} - Prioridad: {record['prioridad']}"
     body = f"El personal {record['personal']} solicita {record['cantidad']} {record['herramienta']}.\n\nEn el siguiente link puede ver lo solicitado: {record['link']}\n\n{record['comentario']}"
 
