@@ -45,3 +45,29 @@ input, select, button {
 button {
     cursor: pointer;
 }
+
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #f9f9f9;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 10px;
+        border: none;
+        box-shadow: none;
+    }
+    input[type="text"], input[type="number"], select, input[type="url"] {
+        font-size: 14px;
+        padding: 10px;
+    }
+    button[type="submit"], button[type="button"] {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
