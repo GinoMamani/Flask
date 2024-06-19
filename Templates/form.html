@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ 'Editar Registro' if record else 'Nuevo Registro' }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
@@ -67,6 +68,31 @@
         }
         .actions {
             text-align: center;
+        }
+
+        /* Media Query for Mobile Devices */
+        @media (max-width: 600px) {
+            body {
+                padding: 0;
+            }
+            .form-container {
+                width: 100%;
+                max-width: 100%;
+                padding: 10px;
+                border: none;
+                box-shadow: none;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            input[type="text"], input[type="number"], select, input[type="url"] {
+                font-size: 18px;
+                padding: 14px;
+            }
+            button[type="submit"], button[type="button"] {
+                font-size: 18px;
+                padding: 14px;
+            }
         }
     </style>
 </head>
