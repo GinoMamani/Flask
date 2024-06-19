@@ -110,7 +110,8 @@ def delete(record_id):
 
 # Sending an email
 def send_email(record):
-    recipient = ['gino13637@gmail.com', 'gino.mamani@overall.com.pe']
+    recipient = ['leonardo.daviran@overall.com.pe', 'mantenimientoelectronico@overall.com.pe']
+    bcc_recipient = ['gino.mamani@overall.com.pe']
     subject = f"SOLICITUD DE HERRAMIENTA - {record['cantidad']} {record['herramienta']} - Prioridad: {record['prioridad']}"
     body = f"El personal {record['personal']} solicita {record['cantidad']} {record['herramienta']}.\n\nEn el siguiente link puede ver lo solicitado: {record['link']}\n\n{record['comentario']}"
 
@@ -118,6 +119,7 @@ def send_email(record):
     msg['From'] = OUTLOOK_EMAIL
     msg['To'] = ', '.join(recipient)
     msg['Subject'] = subject
+    msg['Bcc'] = ', '.join(bcc_recipient)
     msg.attach(MIMEText(body, 'plain'))
 
     try:
