@@ -7,9 +7,15 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
         }
         h1 {
             text-align: center;
+        }
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
         }
         table {
             width: 100%;
@@ -25,72 +31,60 @@
         th {
             background-color: #f2f2f2;
         }
-        form {
-            width: 50%;
-            margin: 0 auto;
-            border: 1px solid #ddd;
-            padding: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        input[type="text"], input[type="number"], select, input[type="url"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button[type="submit"]:hover {
-            background-color: #45a049;
-        }
         .actions {
             text-align: center;
+        }
+        .header-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            th, td {
+                padding: 5px;
+            }
         }
     </style>
 </head>
 <body>
     <h1>Solicitud de repuestos y Herramientas</h1>
-    <a href="{{ url_for('new') }}">Nuevo Registro</a>
-    <table>
-        <thead>
-            <tr>
-                <th>Personal</th>
-                <th>Herramienta</th>
-                <th>Cantidad</th>
-                <th>Prioridad</th>
-                <th>Link</th>
-                <th>Comentario</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for record in records %}
-            <tr>
-                <td>{{ record.personal }}</td>
-                <td>{{ record.herramienta }}</td>
-                <td>{{ record.cantidad }}</td>
-                <td>{{ record.prioridad }}</td>
-                <td><a href="{{ record.link }}">Ver Link</a></td>
-                <td>{{ record.comentario }}</td>
-                <td class="actions">
-                    <a href="{{ url_for('edit', record_id=loop.index0) }}">Editar</a> |
-                    <a href="{{ url_for('delete', record_id=loop.index0) }}">Eliminar</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <br>
+    <div class="header-buttons">
+        <a href="{{ url_for('new') }}">Nuevo Registro</a>
+        <a href="{{ url_for('export') }}">Exportar a Excel</a>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Personal</th>
+                    <th>Herramienta</th>
+                    <th>Cantidad</th>
+                    <th>Prioridad</th>
+                    <th>Link</th>
+                    <th>Comentario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record.personal }}</td>
+                    <td>{{ record.herramienta }}</td>
+                    <td>{{ record.cantidad }}</td>
+                    <td>{{ record.prioridad }}</td>
+                    <td><a href="{{ record.link }}">Ver Link</a></td>
+                    <td>{{ record.comentario }}</td>
+                    <td class="actions">
+                        <a href="{{ url_for('edit', record_id=loop.index0) }}">Editar</a> |
+                        <a href="{{ url_for('delete', record_id=loop.index0) }}">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
