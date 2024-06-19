@@ -65,11 +65,15 @@ def save_records_to_excel():
     
     # Guardar el DataFrame a un archivo Excel
     with pd.ExcelWriter(excel_file, engine='xlsxwriter') as writer:
-        df.to_excel(writer, index=False)
-        for column in df:
-            column_width = max(df[column].astype(str).map(len).max(), len(column))
-            col_idx = df.columns.get_loc(column)
-            writer.sheets['Sheet1'].set_column(col_idx, col_idx, column_width)
+        df.to_excel(writer, index=False, sheet_name='Sheet1')
+
+        # Obtener el objeto worksheet
+        worksheet = writer.sheets['Sheet1']
+
+        # Crear un formato de tabla
+        (max_row, max_col) = df.shape
+        column_settings = [{'header': column} for column in df.columns]
+        worksheet.add_table(0, 0, max_row, max_col - 1, {'columns': column_settings, 'name': 'TablaSolicitud', 'style': 'Table Style Medium 9'})
 
 # Definir las variables directamente en el código
 OUTLOOK_EMAIL = 'Solicitudrepuestos@outlook.com'
