@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ 'Editar Registro' if record else 'Nuevo Registro' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            width: 50%;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="number"], select, input[type="url"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        button[type="button"] {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button[type="button"]:hover {
+            background-color: #da190b;
+        }
+        .actions {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>{{ 'Editar Registro' if record else 'Nuevo Registro' }}</h1>
+        <form action="" method="post">
+            <label for="personal">Personal:</label>
+            <select id="personal" name="personal" required>
+                <option value="">Seleccionar...</option>
+                <option value="ANTON FERNANDO" {% if record and record.personal == 'ANTON FERNANDO' %}selected{% endif %}>ANTON FERNANDO</option>
+                <option value="ASCENCIO MAICON" {% if record and record.personal == 'ASCENCIO MAICON' %}selected{% endif %}>ASCENCIO MAICON</option>
+                <option value="CARDENAS LUIS" {% if record and record.personal == 'CARDENAS LUIS' %}selected{% endif %}>CARDENAS LUIS</option>
+                <option value="CISNEROS ELOY" {% if record and record.personal == 'CISNEROS ELOY' %}selected{% endif %}>CISNEROS ELOY</option>
+                <option value="CONDORI EDWIN" {% if record and record.personal == 'CONDORI EDWIN' %}selected{% endif %}>CONDORI EDWIN</option>
+                <option value="ESPINOZA GARY" {% if record and record.personal == 'ESPINOZA GARY' %}selected{% endif %}>ESPINOZA GARY</option>
+                <option value="ESPINOZA JOSE" {% if record and record.personal == 'ESPINOZA JOSE' %}selected{% endif %}>ESPINOZA JOSE</option>
+                <option value="GOMEZ ERICK" {% if record and record.personal == 'GOMEZ ERICK' %}selected{% endif %}>GOMEZ ERICK</option>
+                <option value="HUACACHE JORGE" {% if record and record.personal == 'HUACACHE JORGE' %}selected{% endif %}>HUACACHE JORGE</option>
+                <option value="JORDAN RAMON" {% if record and record.personal == 'JORDAN RAMON' %}selected{% endif %}>JORDAN RAMON</option>
+                <option value="LOZA JUAN" {% if record and record.personal == 'LOZA JUAN' %}selected{% endif %}>LOZA JUAN</option>
+                <option value="NIETO LEONARDO" {% if record and record.personal == 'NIETO LEONARDO' %}selected{% endif %}>NIETO LEONARDO</option>
+                <option value="PALOMINO CRISTOFEE" {% if record and record.personal == 'PALOMINO CRISTOFEE' %}selected{% endif %}>PALOMINO CRISTOFEE</option>
+                <option value="POMA JUAN" {% if record and record.personal == 'POMA JUAN' %}selected{% endif %}>POMA JUAN</option>
+                <option value="RUIZ EDWARD" {% if record and record.personal == 'RUIZ EDWARD' %}selected{% endif %}>RUIZ EDWARD</option>
+                <option value="SANTOS HARRY" {% if record and record.personal == 'SANTOS HARRY' %}selected{% endif %}>SANTOS HARRY</option>
+            </select><br>
+            <label for="herramienta">Herramienta:</label>
+            <input type="text" id="herramienta" name="herramienta" value="{{ record.herramienta if record else '' }}" required><br>
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" name="cantidad" value="{{ record.cantidad if record else '' }}" required><br>
+            <label for="prioridad">Prioridad:</label>
+            <select id="prioridad" name="prioridad" required>
+                <option value="">Seleccionar...</option>
+                <option value="baja" {% if record and record.prioridad == 'baja' %}selected{% endif %}>Baja</option>
+                <option value="media" {% if record and record.prioridad == 'media' %}selected{% endif %}>Media</option>
+                <option value="alta" {% if record and record.prioridad == 'alta' %}selected{% endif %}>Alta</option>
+            </select><br>
+            <label for="link">Link de la página:</label>
+            <input type="url" id="link" name="link" value="{{ record.link if record else '' }}" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" required><br>
+            <label for="comentario">Comentario:</label>
+            <input type="text" id="comentario" name="comentario" value="{{ record.comentario if record else '' }}" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;"><br>
+            <button type="submit">{{ 'Actualizar' if record else 'Crear' }}</button>
+            <a href="{{ url_for('index') }}"><button type="button">Regresar</button></a>
+        </form>
+    </div>
+</body>
+</html>
