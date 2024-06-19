@@ -2,11 +2,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 import smtplib
 from email.mime.text import MIMEText
-from dotenv import load_dotenv
 import secrets
-
-# Carga las variables de entorno desde el archivo .env
-load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(24)
