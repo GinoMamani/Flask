@@ -4,7 +4,7 @@ import smtplib
 from email.mime.text import MIMEText
 import secrets
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='Templates')
 app.secret_key = secrets.token_hex(24)
 
 # Simulated database
